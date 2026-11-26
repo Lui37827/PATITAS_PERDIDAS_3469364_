@@ -41,3 +41,17 @@ INSERT INTO Barrio (id_Ba, barrio, id_Loc) VALUES
 (2, 'Chapinero Central', 1),
 (3, 'Teusaquillo Centro', 3),
 (4, 'Niza', 4);
+
+INSERT INTO Vacunas (id_VC, vacuna) VALUES
+(1, 'Rabia'),
+(2, 'Parvovirus'),
+(3, 'Triple Felina');
+
+INSERT INTO Raza (id_RZ, raza, id_Esp) VALUES
+(1, 'Criollo / Mestizo', 1),
+(2, 'Labrador Retriever', 1),
+(3, 'Golden Retriever', 1),
+(4, 'Bulldog Francés', 1),
+(5, 'Criollo / Mestizo', 2),
+(6, 'Siamés', 2),
+(7, 'Persa', 2);
