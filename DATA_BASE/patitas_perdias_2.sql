@@ -88,3 +88,43 @@ INSERT INTO Mac_AD_Vacunas (Mac_ADid_Adp, Vacunasid_VC) VALUES
 (1, 1),
 (2, 3),
 (3, 1);
+
+INSERT INTO Mac_PR (id_MP, id_Cli, id_Sex, id_RZ, id_Ep, id_Ba, m_Nom, foto, edad, direc, fh_p, descri) VALUES
+(1, 1, 2, 4, 4, 1, 'Rocky', NULL, NULL, 'Cerca al parque del Chicó', '2026-11-14 15:00:00', 'Bulldog francés extraviado cerca al parque.');
+
+-- 5. Solicitudes de adopción (Proc_Adp), Observaciones (Observa) y Avistamientos (Ver_Mac)
+INSERT INTO Proc_Adp (id_PA, id_CL, id_Adp, id_EP, direc, fh_I, fh_F) VALUES
+(1, 1, 1, 2, 'Apartamento - Sin otras mascotas', '2026-11-15 10:00:00', NULL),
+(2, 2, 2, 3, 'Casa - Con otras mascotas', '2026-10-05 14:00:00', '2026-10-10 10:00:00');
+
+INSERT INTO Observa (id_OV, id_CD, best, Proc_Adpd_PA) VALUES
+(1, 2, 'Visita domiciliaria programada para 2026-11-20 14:00:00.', 1),
+(2, 1, 'Visita domiciliaria exitosa. Espacio adecuado y contrato firmado.', 2);
+
+INSERT INTO Ver_Mac (id_VM, id_MP, id_Ba, direc, foto, fh_mv, descr) VALUES
+(1, 1, 1, 'Cerca al centro comercial Andino', NULL, '2026-11-15 16:30:00', 'Lo vi corriendo hacia la carrera 15.');
+
+-- 6. Consultas de verificación y reporte
+SELECT
+    ma.id_Adp,
+    ma.m_Nom AS mascota,
+    e.especie,
+    r.raza,
+    s.sexo,
+    b.barrio AS zona_ubicacion,
+    f.nom AS fundacion
+FROM Mac_AD ma
+INNER JOIN Raza r ON ma.id_Rz = r.id_RZ
+INNER JOIN Especie e ON r.id_Esp = e.id_Esp
+INNER JOIN Sexo s ON ma.id_Sex = s.id_Sex
+INNER JOIN Sede se ON ma.id_Sed = se.id_Sed
+INNER JOIN Barrio b ON se.id_Ba = b.id_Ba
+INNER JOIN Fundacion f ON se.id_Fun = f.id_Fun;
+
+SELECT
+    f.nom AS fundacion,
+    COUNT(ma.id_Adp) AS total_mascotas_adopcion
+FROM Fundacion f
+LEFT JOIN Sede se ON f.id_Fun = se.id_Fun
+LEFT JOIN Mac_AD ma ON se.id_Sed = ma.id_Sed
+GROUP BY f.id_Fun, f.nom;
