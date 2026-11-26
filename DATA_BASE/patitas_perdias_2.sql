@@ -68,3 +68,23 @@ INSERT INTO Fundacion (id_Fun, id_Di, nit, tel, correo, nom, red_S, mision, visi
 INSERT INTO Director_Fundacion (Directorid_Di, Fundacionid_Fun) VALUES
 (1, 1),
 (2, 2);
+
+INSERT INTO Sede (id_Sed, id_Fun, id_Ba, nom_Se, tel) VALUES
+(1, 1, 2, 'Sede Chapinero', '3104567890'),
+(2, 2, 3, 'Sede Teusaquillo', '3201234567');
+
+-- 3. Clientes / Adoptantes / Reportantes
+INSERT INTO Cliente (id_cli, nom, ape, id_TD, doc, correo, tel, fec_na) VALUES
+(1, 'Andrés Felipe', 'Silva', 1, '1030303030', 'andres.silva@correo.com', '3222222222', NULL),
+(2, 'Valentina', 'Ríos', 1, '1040404040', 'valentina.rios@correo.com', '3333333333', NULL);
+
+-- 4. Mascotas en Adopción (Mac_AD) y Mascotas Perdidas (Mac_PR)
+INSERT INTO Mac_AD (id_Adp, id_Sed, id_Sex, id_Rz, id_EP, m_Nom, edad, foto, fh_P_A, fh_A_T, descri, esteril, dpara) VALUES
+(1, 1, 2, 1, 1, 'Firulais', NULL, NULL, '2026-10-01 09:00:00', NULL, 'Perro muy activo, cariñoso y de color café claro. Tamaño mediano.', 1, 1),
+(2, 1, 1, 5, 1, 'Luna', NULL, NULL, '2026-10-02 10:30:00', NULL, 'Gatica tricolor juguetona y muy tranquila. Tamaño pequeño.', 1, 1),
+(3, 2, 2, 2, 1, 'Max', NULL, NULL, '2026-10-03 11:15:00', NULL, 'Labrador noble, le encanta jugar con la pelota. Tamaño grande.', 1, 1);
+
+INSERT INTO Mac_AD_Vacunas (Mac_ADid_Adp, Vacunasid_VC) VALUES
+(1, 1),
+(2, 3),
+(3, 1);
