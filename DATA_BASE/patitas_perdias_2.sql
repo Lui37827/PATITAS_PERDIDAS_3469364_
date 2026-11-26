@@ -55,3 +55,16 @@ INSERT INTO Raza (id_RZ, raza, id_Esp) VALUES
 (5, 'Criollo / Mestizo', 2),
 (6, 'Siamés', 2),
 (7, 'Persa', 2);
+
+-- 2. Directores, Fundaciones y Sedes
+INSERT INTO Director (id_di, nom_Di, ape_di, id_TD, doc, tel, correo, fec_na) VALUES
+(1, 'Mariana', 'Gutiérrez', 1, '1020202020', '3111111111', 'mariana@huellitascallejeras.org', NULL),
+(2, 'Carlos', 'Mendoza', 1, '1020202021', '3201234567', 'info@proteccionbogota.org', NULL);
+
+INSERT INTO Fundacion (id_Fun, id_Di, nit, tel, correo, nom, red_S, mision, vision) VALUES
+(1, 1, '900987123-1', '3104567890', 'contacto@huellitascallejeras.org', 'Fundación Huellitas Callejeras', '@huellitascallejeras', 'Rescate y adopción responsable', 'Cero animales en situación de calle'),
+(2, 2, '900654321-9', '3201234567', 'info@proteccionbogota.org', 'Protección Animal Bogotá', '@proteccionbogota', 'Bienestar animal en Bogotá', 'Ciudad protectora de animales');
+
+INSERT INTO Director_Fundacion (Directorid_Di, Fundacionid_Fun) VALUES
+(1, 1),
+(2, 2);
