@@ -80,3 +80,59 @@ CREATE TABLE Sede (
       FOREIGN KEY (id_Ba) REFERENCES Barrio(id_Ba)
       ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
+
+
+-- 4. Razas
+CREATE TABLE Raza (
+    id_RZ SMALLINT NOT NULL AUTO_INCREMENT,
+    raza VARCHAR(100) NOT NULL,
+    id_Esp SMALLINT NOT NULL,
+    raza_indefinida VARCHAR(100) NULL DEFAULT NULL,
+    PRIMARY KEY (id_RZ),
+    CONSTRAINT fk_raza_especie
+      FOREIGN KEY (id_Esp) REFERENCES Especie(id_Esp)
+      ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+-- 5. Mascotas perdidas/encontradas y mascotas en adopción
+CREATE TABLE Mac_PR (
+    id_MP SMALLINT NOT NULL AUTO_INCREMENT,
+    id_Cli SMALLINT NOT NULL,
+    id_Sex SMALLINT NOT NULL,
+    id_RZ SMALLINT NOT NULL,
+    id_Ep SMALLINT NOT NULL,
+    id_Ba SMALLINT NOT NULL,
+    m_Nom VARCHAR(50),
+    foto VARBINARY(2000),
+    edad DATE,
+    direc VARCHAR(100),
+    fh_p TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    descri VARCHAR(255),
+    PRIMARY KEY (id_MP),
+    CONSTRAINT fk_macpr_cliente FOREIGN KEY (id_Cli) REFERENCES Cliente(id_cli),
+    CONSTRAINT fk_macpr_sexo FOREIGN KEY (id_Sex) REFERENCES Sexo(id_Sex),
+    CONSTRAINT fk_macpr_raza FOREIGN KEY (id_RZ) REFERENCES Raza(id_RZ),
+    CONSTRAINT fk_macpr_estado FOREIGN KEY (id_Ep) REFERENCES Estado_P(id_Ep),
+    CONSTRAINT fk_macpr_barrio FOREIGN KEY (id_Ba) REFERENCES Barrio(id_Ba)
+) ENGINE=InnoDB;
+
+CREATE TABLE Mac_AD (
+    id_Adp SMALLINT NOT NULL AUTO_INCREMENT,
+    id_Sed SMALLINT NOT NULL,
+    id_Sex SMALLINT NOT NULL,
+    id_Rz SMALLINT NOT NULL,
+    id_EP SMALLINT NOT NULL,
+    m_Nom VARCHAR(50) NOT NULL,
+    edad DATE,
+    foto VARBINARY(2000),
+    fh_P_A TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    fh_A_T TIMESTAMP NULL DEFAULT NULL,
+    descri VARCHAR(255),
+    esteril SMALLINT DEFAULT 0,
+    dpara SMALLINT DEFAULT 0,
+    PRIMARY KEY (id_Adp),
+    CONSTRAINT fk_macad_sede FOREIGN KEY (id_Sed) REFERENCES Sede(id_Sed),
+    CONSTRAINT fk_macad_sexo FOREIGN KEY (id_Sex) REFERENCES Sexo(id_Sex),
+    CONSTRAINT fk_macad_raza FOREIGN KEY (id_Rz) REFERENCES Raza(id_RZ),
+    CONSTRAINT fk_macad_estado FOREIGN KEY (id_EP) REFERENCES Estado_P(id_Ep)
+) ENGINE=InnoDB;
