@@ -221,3 +221,22 @@ CREATE TABLE Donacion (
     FOREIGN KEY (id_cli) REFERENCES Cliente(id_cli)
     ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
+
+USE patitas_perdidas_bd;
+
+-- 1. Catálogos base
+INSERT INTO Tip_Doc (id_TD, tip_D) VALUES (1, 'CC');
+
+INSERT INTO Condicion (id_CD, condi) VALUES
+(1, 'Excelente'),
+(2, 'Buena'),
+(3, 'Regular');
+
+INSERT INTO Especie (id_Esp, especie) VALUES
+(1, 'Perro'),
+(2, 'Gato');
+
+INSERT INTO Sexo (id_Sex, sexo) VALUES
+(1, 'Hembra'),
+(2, 'Macho'),
+(3, 'Desconocido');
