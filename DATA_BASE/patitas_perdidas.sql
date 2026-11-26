@@ -42,3 +42,45 @@ CREATE TABLE Vacunas (
     vacuna VARCHAR(10) NOT NULL,
     PRIMARY KEY (id_VC)
 ) ENGINE=InnoDB;
+
+-- 2. Personas, roles/acceso y fundaciones
+CREATE TABLE Cliente (
+    id_cli SMALLINT NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    ape VARCHAR(50) NOT NULL,
+    doc VARCHAR(20) NOT NULL,
+    correo VARCHAR(100),
+    tel VARCHAR(15),
+    fec_na DATE,
+    PRIMARY KEY (id_cli),
+    UNIQUE KEY uq_cliente_doc (doc)
+) ENGINE=InnoDB;
+
+CREATE TABLE Director (
+    id_di SMALLINT NOT NULL AUTO_INCREMENT,
+    nom_Di VARCHAR(55) NOT NULL,
+    ape_di VARCHAR(55) NOT NULL,
+    doc VARCHAR(20) NOT NULL,
+    tel VARCHAR(15),
+    correo VARCHAR(100),
+    fec_na DATE,
+    PRIMARY KEY (id_di),
+    UNIQUE KEY uq_director_doc (doc)
+) ENGINE=InnoDB;
+
+CREATE TABLE Fundacion (
+    id_Fun SMALLINT NOT NULL AUTO_INCREMENT,
+    id_Di SMALLINT,
+    nit VARCHAR(20) NOT NULL,
+    tel VARCHAR(15),
+    correo VARCHAR(100),
+    nom VARCHAR(60) NOT NULL,
+    red_S VARCHAR(255),
+    mision VARCHAR(255),
+    vision VARCHAR(255),
+    PRIMARY KEY (id_Fun),
+    UNIQUE KEY uq_fundacion_nit (nit),
+    CONSTRAINT fk_fundacion_director
+    FOREIGN KEY (id_Di) REFERENCES Director(id_di)
+    ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB;
