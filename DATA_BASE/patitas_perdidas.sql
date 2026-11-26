@@ -240,3 +240,23 @@ INSERT INTO Sexo (id_Sex, sexo) VALUES
 (1, 'Hembra'),
 (2, 'Macho'),
 (3, 'Desconocido');
+
+
+INSERT INTO Estado_P (id_Ep, est_Pu) VALUES
+(1, 'Disponible'),
+(2, 'En proceso'),
+(3, 'Adoptada'),
+(4, 'Perdida'),
+(5, 'Encontrada'),
+(6, 'Activo'),
+(7, 'Finalizado'),
+(8, 'Cancelado'),
+(9, 'Pendiente'),
+(10, 'Aceptada'),
+(11, 'Rechazada');
+
+INSERT INTO Localidad (id_Loc, loc) VALUES
+(1, 'Chapinero'),
+(2, 'Usaquén'),
+(3, 'Teusaquillo'),
+(4, 'Suba');
