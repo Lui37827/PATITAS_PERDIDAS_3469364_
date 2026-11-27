@@ -83,3 +83,6 @@ INSERT INTO mac_ad_vacunas (Mac_ADid_Adp, Vacunasid_VC) VALUES
 INSERT INTO proc_adp (id_PA, id_CL, id_Adp, id_EP, direc, observacion, condicion) VALUES
 (1, 1, 1, 1, 'Calle 60 # 10-20', 'Visita domiciliaria programada', 'Apartamento - Sin otras mascotas'),
 (2, 2, 2, 2, 'Carrera 15 # 45-12', 'En revisión de documentos', 'Casa - Con otras mascotas');
+
+ALTER TABLE cliente ADD COLUMN password VARCHAR(255) NOT NULL AFTER correo;
+ALTER TABLE director ADD COLUMN password VARCHAR(255) NOT NULL AFTER correo;
